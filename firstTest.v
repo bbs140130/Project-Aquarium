@@ -20,6 +20,26 @@ module nand_gate(input a, input b, output y);
 
 endmodule
 
+// AND gate
+module and_gate (a, b, y);
+input a, b;
+output y;
+
+assign y = a & b;
+
+endmodule
+
+// Half Adder
+module half_adder ( a,b,s,c );
+output s ;
+output c ;
+input a ;
+input b ;
+assign s=a ^ b;
+assign c= a & b;
+endmodule
+
+
 module test_bench;
 
     //wire [6:0]y;
@@ -28,7 +48,7 @@ module test_bench;
     
     //gates dut(.y(y), .a(a), .b(b));
     not_gate test1(.y(y), .a(a));
-
+    
     initial begin
     
     a = 1'b0;
