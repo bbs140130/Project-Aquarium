@@ -129,7 +129,7 @@ endmodule
 module test_bench;
 
     wire y, x, w, s, c_half, i, cout, sum;
-    reg a, b, c, n, o, q;
+    reg a, b, c, n, o, t;
     reg e, f, g, h, j, k, cin, l, m;
 
     reg input1;
@@ -152,7 +152,7 @@ module test_bench;
     or_gate test7(.y(i), .a(j), .b(k));
     
     //NOR gate
-    nor_gate test8(.y(q), .a(a), .b(b));
+    nor_gate test8(.y(t), .a(a), .b(b));
 
     // Half Adder
     half_adder test4(.a(g), .b(h), .s(s), .c(c_half));
@@ -238,16 +238,16 @@ module test_bench;
     $display("NOR Gate");
     n = 1'b0;
     o = 1'b0; #50;
-    $display("j=%1b, k=%1b, i=%1b", n, o, q);
+        $display("j=%1b, k=%1b, i=%1b", n, o, t);
     n = 1'b0;
     o = 1'b1; #50;
-    $display("j=%1b, k=%1b, i=%1b", n, o, q);
+        $display("j=%1b, k=%1b, i=%1b", n, o, t);
     n = 1'b1;
     o = 1'b0; #50;
-    $display("j=%1b, k=%1b, i=%1b", n, o, q);
+        $display("j=%1b, k=%1b, i=%1b", n, o, t);
     n = 1'b1;
     o = 1'b1; #50;
-    $display("j=%1b, k=%1b, i=%1b", n, o, q);
+        $display("j=%1b, k=%1b, i=%1b", n, o, t);
     $display("=====================================");       
 
 
