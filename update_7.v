@@ -36,7 +36,8 @@ module or_gate (a, b, y);
     input a, b;
     output y;
     assign y = a | b;
-    
+
+
 endmodule
 
 // NOR gate
@@ -59,15 +60,17 @@ module half_adder ( a,b,s,c );
 endmodule
 
 // Full Adder
-module full_adder(a,b,cin,sum,cout);
-    input [3:0]a,b;
-    input cin;
-    output wire [3:0]sum;
-    output wire cout;
-    wire [4:0]temp;
-    assign temp=a+b+cin;
-    assign sum=temp[3:0];
-    assign cout=temp[4];
+module fulladder
+(
+ input x,
+ input y,
+ input cin,
+ 
+ output A, 
+ output cout
+ );
+ 
+assign {cout,A} =  cin + y + x;
 endmodule
 
 //Subtractor 16-bit
@@ -121,16 +124,21 @@ assign d_out = (d_in == 4'b0000) ? tmp   :
                16'bxxxx_xxxx_xxxx_xxxx;
 
 endmodule
-    
+
+
 // Test Bench
 module test_bench;
 
-    wire y, x, w, s, c_half, i, q, cout;
+    wire y, x, w, s, c_half, i, cout, sum;
     reg a, b, c;
-    reg e, f, g, h, j, k, cin;
-    reg n, o;
-    reg[3:0] l, m;
-    wire[3:0] sum;
+    reg e, f, g, h, j, k, cin, l, m;
+
+    reg input1;
+    reg input2;
+    reg carryin;
+ 
+    wire out;
+    wire carryout;
     
     // NOT gate
     not_gate test1(.y(y), .a(a));
@@ -151,11 +159,10 @@ module test_bench;
     half_adder test4(.a(g), .b(h), .s(s), .c(c_half));
     
     //Full Adder
-    full_adder test8(.a(l), .b(m), .cin(cin), .sum(sum), .cout(cout));
+    fulladder uut (.x(input1),.y(input2),.cin(carryin),.A(out),.cout(carryout));
     
     //Subtractor 16-bit
     subtract_16_bit test6(.a(p), .b(r), .sub(t));
-
 
     // Decoder 3x8 variables and test function
     wire d0, d1, d2, d3, d4, d5, d6, d7;
@@ -226,8 +233,8 @@ module test_bench;
     j = 1'b1;
     k = 1'b1; #50;
     $display("j=%1b, k=%1b, i=%1b", j, k, i);
-    $display("=====================================");      
-        
+    $display("=====================================");  
+    
     //NOR gate TEST
     $display("NOR Gate");
     n = 1'b0;
@@ -242,7 +249,8 @@ module test_bench;
     n = 1'b1;
     o = 1'b1; #50;
     $display("j=%1b, k=%1b, i=%1b", n, o, q);
-    $display("=====================================");      
+    $display("=====================================");          
+
 
     // Half Adder TEST
     $display("Half Adder");
@@ -262,20 +270,40 @@ module test_bench;
     
     //Full Adder TEST
     $display("Full Adder");
-    l = 1'b0;
-    m = 1'b0; #50;
-    $display("l=%1b, m=%1b, carry_in=%1b,sum=%1b, carry=%1b", l, m, cin, sum, cout);
-    l = 1'b0;
-    m = 1'b1; #50;
-    $display("l=%1b, m=%1b, carry_in=%1b,sum=%1b, carry=%1b", l, m, cin, sum, cout);
-    l = 1'b1;
-    m = 1'b0; #50;
-    $display("l=%1b, m=%1b, carry_in=%1b,s=%1b, carry=%1b", l, m, cin, sum, cout);
-    l = 1'b1;
-    m = 1'b1; #50;
-    $display("l=%1b, m=%1b, carry_in=%1b,s=%1b, carry=%1b", l, m, cin, sum, cout);
+    input1 = 1'b0;
+    input2 = 1'b0; 
+    carryin = 1'b0;#50;
+    $display("input1=%1b, input2=%1b, carry_in=%1b,sum=%1b, carryout=%1b", input1, input2, carryin, out, carryout);
+    input1 = 1'b0;
+    input2 = 1'b1; 
+    carryin = 1'b0;#50;
+    $display("input1=%1b, input2=%1b, carry_in=%1b,sum=%1b, carryout=%1b", input1, input2, carryin, out, carryout);
+    input1 = 1'b1;
+    input2 = 1'b0; 
+    carryin = 1'b0;#50;
+    $display("input1=%1b, input2=%1b, carry_in=%1b,sum=%1b, carryout=%1b", input1, input2, carryin, out, carryout);
+    input1 = 1'b1;
+    input2 = 1'b1; 
+    carryin = 1'b0;#50;
+    $display("input1=%1b, input2=%1b, carry_in=%1b,sum=%1b, carryout=%1b", input1, input2, carryin, out, carryout);
+    input1 = 1'b0;
+    input2 = 1'b0; 
+    carryin = 1'b1;#50;
+    $display("input1=%1b, input2=%1b, carry_in=%1b,sum=%1b, carryout=%1b", input1, input2, carryin, out, carryout);    
+    input1 = 1'b0;
+    input2 = 1'b1; 
+    carryin = 1'b1;#50;
+    $display("input1=%1b, input2=%1b, carry_in=%1b,sum=%1b, carryout=%1b", input1, input2, carryin, out, carryout);   
+    input1 = 1'b1;
+    input2 = 1'b0; 
+    carryin = 1'b1;#50;
+    $display("input1=%1b, input2=%1b, carry_in=%1b,sum=%1b, carryout=%1b", input1, input2, carryin, out, carryout);   
+    input1 = 1'b1;
+    input2 = 1'b1; 
+    carryin = 1'b1;#50;
+    $display("input1=%1b, input2=%1b, carry_in=%1b,sum=%1b, carryout=%1b", input1, input2, carryin, out, carryout);   
     $display("=====================================");
-        
+    
     //Substractor TEST
     $display("Substractor 16-bit");
     p = 1'b0;
@@ -292,6 +320,7 @@ module test_bench;
     $display("l=%1b, m=%1b, carry_in=%1b,sum=%1b, carry=%1b", p, r, sub);
     $display("=====================================");
         
+
     // 3x8 Decoder TEST
     $display("Decoder 3x8");
     $display("a2| a1| a0| d7| d6| d5| d4| d3| d2| d1|d0");
