@@ -45,7 +45,7 @@ module nor_gate (a, b, y);
    
     input a, b;
     output y;
-    assign y = ~(a | b)
+    assign y = ~(a | b);
         
 endmodule
 
@@ -125,12 +125,11 @@ assign d_out = (d_in == 4'b0000) ? tmp   :
 
 endmodule
 
-
 // Test Bench
 module test_bench;
 
     wire y, x, w, s, c_half, i, cout, sum;
-    reg a, b, c;
+    reg a, b, c, n, o, q;
     reg e, f, g, h, j, k, cin, l, m;
 
     reg input1;
@@ -153,7 +152,7 @@ module test_bench;
     or_gate test7(.y(i), .a(j), .b(k));
     
     //NOR gate
-    nor_gate test5(.y(q), .a(a), .b(b));
+    nor_gate test8(.y(q), .a(a), .b(b));
 
     // Half Adder
     half_adder test4(.a(g), .b(h), .s(s), .c(c_half));
@@ -162,7 +161,7 @@ module test_bench;
     fulladder uut (.x(input1),.y(input2),.cin(carryin),.A(out),.cout(carryout));
     
     //Subtractor 16-bit
-    subtract_16_bit test6(.a(p), .b(r), .sub(t));
+    //subtract_16_bit test9(.a(p), .b(r), .sub(t));
 
     // Decoder 3x8 variables and test function
     wire d0, d1, d2, d3, d4, d5, d6, d7;
@@ -249,7 +248,7 @@ module test_bench;
     n = 1'b1;
     o = 1'b1; #50;
     $display("j=%1b, k=%1b, i=%1b", n, o, q);
-    $display("=====================================");          
+    $display("=====================================");       
 
 
     // Half Adder TEST
@@ -304,7 +303,7 @@ module test_bench;
     $display("input1=%1b, input2=%1b, carry_in=%1b,sum=%1b, carryout=%1b", input1, input2, carryin, out, carryout);   
     $display("=====================================");
     
-    //Substractor TEST
+    /*//Substractor TEST
     $display("Substractor 16-bit");
     p = 1'b0;
     r = 1'b0; #50;
@@ -318,7 +317,7 @@ module test_bench;
     p = 1'b1;
     r = 1'b1; #50;
     $display("l=%1b, m=%1b, carry_in=%1b,sum=%1b, carry=%1b", p, r, sub);
-    $display("=====================================");
+    $display("=====================================");*/
         
 
     // 3x8 Decoder TEST
