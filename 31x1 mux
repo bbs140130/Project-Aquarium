@@ -80,7 +80,8 @@ module mux32_1_u_mux16_1(
   // OUTPUT
     output  output_y;
   wire    [1:0] mux_com_out;
-  // Declaration of 32:1 Multiplexer
+ 
+ // Declaration of 32:1 Multiplexer
    mux16_1_code U_MUX16_1_1 (
     .input_d0(input_d0),
     .input_d1(input_d1),
