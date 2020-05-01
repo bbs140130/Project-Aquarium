@@ -52,12 +52,21 @@ module testbench;
   wire[7:0] out;
 
 
-  mux test1(.out(out), .select(select), .input0(input0), .input1(input1), .input2(input2), .input3(input3), .input4(input4), .input5(input5), .input6(input6))
+  mux test1(
+  .out(out), 
+  .select(select), 
+  .input0(input0), 
+  .input1(input1), 
+  .input2(input2), 
+  .input3(input3), 
+  .input4(input4), 
+  .input5(input5), 
+  .input6(input6));
 
 
   initial begin
     #100
-    select = 5'b00000;
+    select = 5'b01000;    //JUST CHANGE THE SELECT INPUT TO TEST WITH DIFFERENT OUTPUTS
     input0 = 8'b00000001;
     input1 = 8'b00000010;
     input2 = 8'b00000100;
@@ -68,7 +77,7 @@ module testbench;
 
     $display("=====================================");
     #50;
-    $display(out)
+    $display(out);
 
   end
 endmodule
