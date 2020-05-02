@@ -62,7 +62,7 @@ module tb_counter;
         input [7:0] eq;
     begin
         if (val == eq) $display("[TEST][PASSED]"); 
-        else $display("[TEST][FAILED] Got %04b expected %04b", val, eq);
+        else $display("[TEST][FAILED] Got %04b ! expected %04b", val, eq);
     end
     endtask
 
