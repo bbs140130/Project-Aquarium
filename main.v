@@ -149,6 +149,7 @@ module test_bench;
     reg [4:0] mux_input_3;
     reg [4:0] mux_input_4;
     reg [4:0] mux_input_5;
+    reg [4:0] mux_input_6;
 
 
     dec_4x16 test1 (.d_out(d_out), .d_in(d_in)); 
@@ -216,7 +217,7 @@ module test_bench;
 
     initial begin
       // 4x16 Decoder TEST
-      d_in = 4'b1111;#50;
+      d_in = 4'b1000;#50;
         mux_input_0 = d_out;
         $display("SELECT MODE: %4b", mux_input_0);
 
@@ -240,6 +241,9 @@ module test_bench;
       d_in = 4'b0100; #50;
           mux_input_5 = d_out;
         $display("SELECT MODE: %4b", mux_input_5);
+    
+        mux_input_6 = 5'b11111;
+        $display("SELECT MODE: %5b", mux_input_6);
 
       $display("=====================================");
 
@@ -348,6 +352,9 @@ $display("8 bit Register");
     select = mux_input_5; 
     #50;
     $display("OUTPUT of Mode 10000: %8b",out);
+    select = mux_input_6;
+    #50;
+    $display("OUTPUT of Mode 11111: %8b",out);
     end
 
 
