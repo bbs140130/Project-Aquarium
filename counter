@@ -1,0 +1,35 @@
+module up_down_counter(input clk, reset,up_down, output[3:0]  counter
+    );
+reg [3:0] counter_up_down;
+
+// down counter
+always @(posedge clk or posedge reset)
+begin
+if(reset)
+ counter_up_down <= 4'h0;
+else if(~up_down)
+ counter_up_down <= counter_up_down + 4'd1;
+else
+ counter_up_down <= counter_up_down - 4'd1;
+end 
+assign counter = counter_up_down;
+endmodule
+
+module updowncounter_testbench();
+reg clk, reset,up_down;
+wire [3:0] counter;
+
+up_down_counter dut(clk, reset,up_down, counter);
+initial begin 
+clk=0;
+forever #5 clk=~clk;
+end
+initial begin
+reset=1;
+up_down=0;
+#20;
+reset=0;
+#200;
+up_down=1;
+end
+endmodule 
