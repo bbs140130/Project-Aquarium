@@ -149,6 +149,7 @@ module test_bench;
     reg [4:0] mux_input_3;
     reg [4:0] mux_input_4;
     reg [4:0] mux_input_5;
+    reg [4:0] mux_input_6;
 
 
     dec_4x16 test1 (.d_out(d_out), .d_in(d_in)); 
@@ -171,6 +172,8 @@ module test_bench;
      reg [7:0] input6;
 
 
+    reg [7:0] reg0_output;
+    
      reg [7:0] reg1_output;
 
      reg [7:0] reg2_output;
@@ -230,9 +233,19 @@ module test_bench;
 
       d_in = 4'b0100; #50;
           mux_input_5 = d_out;
-
+          
+        mux_input_6 = 5'b11111;
 
 $display("8 bit Register");
+    $display("Register 0: Fish Counter");
+
+        $display("RST|CLK|    D     |     Q");
+        reset = 0; 
+        CLK = 1; 
+        $display(" %0h | %0h | 00000111 | 00000111",reset, CLK);  
+        reg0_output = 8'b00000111;
+
+
         $display("Register 1: Tank Cleanliness");
 
         $display("RST|CLK|    D     |     Q");
@@ -293,7 +306,7 @@ $display("8 bit Register");
 
          #100
       input0 = 8'b00000000; //No input
-      input1 = 8'b00000010; //Here's where the Counter output should go to
+      input1 = reg0_output; //Here's where the Counter output should go to
       input2 = reg1_output;
       input3 = reg2_output;
       input4 = reg3_output;
@@ -319,6 +332,9 @@ $display("8 bit Register");
     select = mux_input_5; 
     #50;
     $display("OUTPUT of Mode 10000: %8b",out);
+    select = mux_input_6;
+    #50;
+    $display("OUTPUT of Mode 11111: %8b",out);
     end
 
 
