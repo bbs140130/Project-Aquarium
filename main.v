@@ -171,29 +171,18 @@ module test_bench;
      reg [7:0] input6;
 
 
-     reg [7:0] reg_input2_first;
-     reg [7:0] reg_input2_second;
-     reg [7:0] reg_input2_third;
-     reg [7:0] reg_input2_fourth;
-     reg [7:0] reg_input2_fifth;
+     reg [7:0] reg1_output_clock_0;
+     reg [7:0] reg1_output_clock_1;
 
-     reg [7:0] reg_input3_first;
-     reg [7:0] reg_input3_second;
-     reg [7:0] reg_input3_third;
-     reg [7:0] reg_input3_fourth;
-     reg [7:0] reg_input3_fifth;
+     reg [7:0] reg2_output_clock_0;
+     reg [7:0] reg2_output_clock_1;
 
-     reg [7:0] reg_input4_first;
-     reg [7:0] reg_input4_second;
-     reg [7:0] reg_input4_third;
-     reg [7:0] reg_input4_fourth;
-     reg [7:0] reg_input4_fifth;
+     reg [7:0] reg3_output_clock_0;
+     reg [7:0] reg3_output_clock_1;
 
-     reg [7:0] reg_input5_first;
-     reg [7:0] reg_input5_second;
-     reg [7:0] reg_input5_third;
-     reg [7:0] reg_input5_fourth;
-     reg [7:0] reg_input5_fifth;
+     reg [7:0] reg4_output_clock_0;
+     reg [7:0] reg4_output_clock_1;
+
 
      wire[7:0] out;
 
@@ -258,33 +247,17 @@ $display("8 bit Register");
         $display("Register 1: Tank Cleanliness");
 
         $display("RST|CLK|    D     |     Q");
-        reset = 1; 
-        CLK = 0; 
-        D_tank_cleanliness = 8'b11111111;#50;
+        reset = 0; 
+        CLK = 1; 
+        D_tank_cleanliness = 8'b00001110;#50;
         $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_cleanliness, Q_tank_cleanliness);  
-        reg_input2_first = Q_tank_cleanliness;
-
+        reg1_output_clock_0 = Q_tank_cleanliness;
+        
         reset = 0; 
         CLK = 0; 
-        D_tank_cleanliness = 8'b11111111;#50;
+        D_tank_cleanliness = 8'b00001110;#50;
         $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_cleanliness, Q_tank_cleanliness);  
-        reg_input2_second = Q_tank_cleanliness;
-
-        CLK = 1; 
-        D_tank_cleanliness = 8'b11111111;#50;
-        $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_cleanliness, Q_tank_cleanliness);  
-        reg_input2_third = Q_tank_cleanliness;
-
-        CLK = 0; 
-        D_tank_cleanliness = 8'b0;#50;
-        $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_cleanliness, Q_tank_cleanliness);  
-        reg_input2_fourth = Q_tank_cleanliness;
-
-        reset = 1; 
-        D_tank_cleanliness = 8'b0;#50;
-        $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_cleanliness, Q_tank_cleanliness);  
-        reg_input2_fifth = Q_tank_cleanliness;
-
+        reg1_output_clock_1 = Q_tank_cleanliness;
 
 
 
@@ -292,122 +265,69 @@ $display("8 bit Register");
           $display("Register 2: Tank Temperature");
 
     $display("RST|CLK|    D     |     Q");
-    reset = 1; 
-    CLK = 0; 
-    D_tank_temperature = 8'b11111111;#50;
+    reset = 0; 
+    CLK = 1; 
+    D_tank_temperature = 8'b00011100;#50;
         $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_temperature, Q_tank_temperature);
-        reg_input3_first = Q_tank_temperature;
+        reg2_output_clock_0 = Q_tank_temperature;
     
     reset = 0; 
     CLK = 0; 
-    D_tank_temperature = 8'b11111111;#50;
+    D_tank_temperature = 8'b00011100;#50;
         $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_temperature, Q_tank_temperature);  
-        reg_input3_second = Q_tank_temperature;
-
-    CLK = 1; 
-    D_tank_temperature = 8'b11111111;#50;
-        $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_temperature, Q_tank_temperature);  
-        reg_input3_third = Q_tank_temperature;
-
-    CLK = 0; 
-    D_tank_temperature = 8'b0;#50;
-        $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_temperature, Q_tank_temperature);  
-        reg_input3_fourth = Q_tank_temperature;
-
-    reset = 1; 
-    D_tank_temperature = 8'b0;#50;
-        $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_temperature, Q_tank_temperature);
-      reg_input3_fifth = Q_tank_temperature;
+        reg2_output_clock_1 = Q_tank_temperature;
 
 
         $display("------------------------------------------------");
           $display("Register 3: Food Shortage");
 
     $display("RST|CLK|    D     |     Q");
-    reset = 1; 
-    CLK = 0; 
-    D_tank_food_storage = 8'b11111111;#50;
+    reset = 0; 
+    CLK = 1; 
+    D_tank_food_storage = 8'b00111000;#50;
         $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_food_storage, Q_tank_food_storage);  
-        reg_input4_first = Q_tank_food_storage;
+        reg3_output_clock_0 = Q_tank_food_storage;
 
 
     reset = 0; 
     CLK = 0; 
-    D_tank_food_storage = 8'b11111111;#50;
+    D_tank_food_storage = 8'b00111000;#50;
         $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_food_storage, Q_tank_food_storage);  
-        reg_input4_second = Q_tank_food_storage;
-    CLK = 1; 
-    D_tank_food_storage = 8'b11111111;#50;
-        $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_food_storage, Q_tank_food_storage);  
-        reg_input4_third = Q_tank_food_storage;
-
-
-    CLK = 0; 
-    D_tank_food_storage = 8'b0;#50;
-        $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_food_storage, Q_tank_food_storage);  
-        reg_input4_fourth = Q_tank_food_storage;
-
-
-    reset = 1; 
-    D_tank_food_storage = 8'b0;#50;
-        $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_food_storage, Q_tank_food_storage); 
-        reg_input4_fifth = Q_tank_food_storage;
+        reg3_output_clock_1 = Q_tank_food_storage;
+   
 
         $display("------------------------------------------------");
   $display("Register 4: Tank Saltiness");
 
     $display("RST|CLK|    D     |     Q");
-    reset = 1; 
-    CLK = 0; 
-    D_tank_saltiness = 8'b11111111;#50;
+    reset = 0; 
+    CLK = 1; 
+    D_tank_saltiness = 8'b01110000;#50;
         $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_saltiness, Q_tank_saltiness); 
-        reg_input5_first = Q_tank_saltiness;
+        reg4_output_clock_0 = Q_tank_saltiness;
 
 
 
     
     reset = 0; 
     CLK = 0; 
-    D_tank_saltiness = 8'b11111111;#50;
+    D_tank_saltiness = 8'b01110000;#50;
         $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_saltiness, Q_tank_saltiness);  
-        reg_input5_second = Q_tank_saltiness;
-
-
-    CLK = 1; 
-    D_tank_saltiness = 8'b11111111;#50;
-        $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_saltiness, Q_tank_saltiness);  
-        reg_input5_third = Q_tank_saltiness;
-
-
-    CLK = 0; 
-    D_tank_saltiness = 8'b0;#50;
-        $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_saltiness, Q_tank_saltiness);  
-        reg_input5_fourth = Q_tank_saltiness;
-
-    reset = 1; 
-    D_tank_saltiness = 8'b0;#50;
-        $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_saltiness, Q_tank_saltiness); 
-        reg_input5_fifth = Q_tank_saltiness;
-
+        reg4_output_clock_1 = Q_tank_saltiness;
 
 
       $display("=====================================");
-      //Now we have 5 outputs for each register.
-      //These 5 outputs are based on different reset and clock values
 
-      //For example, for register 1, we have five Q values that are potential inputs for mux. These values are stored in reg_input1_fifth, reg_input1_seond, reg_input1_third, reg_input1_fourth, reg_input1_fifth
-
-      //We need to pick the right one based on clock value and reset value. For now, I'll pick first for all registers
-
+  //input2, input3, input4, input5 have 2 potential values that could be assignmend. For example, input2 = reg1_output_clock_0 OR input2 = reg1_output_clock_1. reg1_output_clock_0 is the output of register with clock = 0 and reg1_output_clock_1 is the output of register with clock = 1
 
          #100
       input0 = 8'b00000000; //No input
       input1 = 8'b00000010; //Here's where the Counter output should go to
-      input2 = reg_input2_first;
-      input3 = reg_input3_first;
-      input4 = reg_input4_first;
-      input5 = reg_input5_first;
-      input6 = 8'bxxxxxxxx;//This is the reset value for mux should go to
+      input2 = reg1_output_clock_0;
+      input3 = reg2_output_clock_0;
+      input4 = reg3_output_clock_0;
+      input5 = reg4_output_clock_0;
+      input6 = 8'b00000000;//This is the reset value for mux should go to
 
           $display("=====================================");
     select = mux_input_0; 
