@@ -218,28 +218,28 @@ module test_bench;
       // 4x16 Decoder TEST
       d_in = 4'b1111;#50;
         mux_input_0 = d_out;
-        $display("mux_input_0: %4b", mux_input_0);
+        $display("SELECT MODE: %4b", mux_input_0);
 
 
       d_in = 4'b0000; #50;
         mux_input_1 = d_out;
-        $display("mux_input_1: %4b", mux_input_1);
+        $display("SELECT MODE: %4b", mux_input_1);
 
       d_in = 4'b0001; #50;
           mux_input_2 = d_out;
-        $display("mux_input_2: %4b", mux_input_2);
+        $display("SELECT MODE: %4b", mux_input_2);
 
       d_in = 4'b0010; #50;
           mux_input_3 = d_out;
-        $display("mux_input_3: %4b", mux_input_3);
+        $display("SELECT MODE: %4b", mux_input_3);
 
       d_in = 4'b0011; #50;
           mux_input_4 = d_out;
-        $display("mux_input_4: %4b", mux_input_4);
+        $display("SELECT MODE: %4b", mux_input_4);
 
       d_in = 4'b0100; #50;
           mux_input_5 = d_out;
-        $display("mux_input_5: %4b", mux_input_5);
+        $display("SELECT MODE: %4b", mux_input_5);
 
       $display("=====================================");
 
@@ -332,22 +332,22 @@ $display("8 bit Register");
           $display("=====================================");
     select = mux_input_0; 
     #50;
-    $display("test with mux_input_0: %8b",out);   
+    $display("OUTPUT of Mode 00000: %8b",out);   
     select = mux_input_1; 
     #50;
-    $display("test with mux_input_1: %8b",out);
+    $display("OUTPUT of Mode 00001: %8b",out);
     select = mux_input_2; 
     #50;
-    $display("test with mux_input_2: %8b",out);
+    $display("OUTPUT of Mode 00010: %8b",out);
     select = mux_input_3; 
     #50;
-    $display("test with mux_input_3: %8b",out);
+    $display("OUTPUT of Mode 00100: %8b",out);
     select = mux_input_4; 
     #50;
-    $display("test with mux_input_4: %8b",out);
+    $display("OUTPUT of Mode 01000: %8b",out);
     select = mux_input_5; 
     #50;
-    $display("test with mux_input_5: %8b",out);
+    $display("OUTPUT of Mode 10000: %8b",out);
     end
 
 
