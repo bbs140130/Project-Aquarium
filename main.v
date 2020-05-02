@@ -327,7 +327,7 @@ $display("8 bit Register");
       input3 = reg2_output_clock_0;
       input4 = reg3_output_clock_0;
       input5 = reg4_output_clock_0;
-      input6 = 8'b00000000;//This is the reset value for mux should go to
+      input6 = 8'b11111111;//This is the reset value for mux should go to
 
           $display("=====================================");
     select = mux_input_0; 
