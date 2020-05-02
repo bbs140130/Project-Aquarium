@@ -170,6 +170,7 @@ module test_bench;
 
      reg [7:0] input6;
 
+
      reg [7:0] reg_input2_first;
      reg [7:0] reg_input2_second;
      reg [7:0] reg_input2_third;
@@ -402,10 +403,10 @@ $display("8 bit Register");
          #100
       input0 = 8'b00000000; //No input
       input1 = 8'b00000010; //Here's where the Counter output should go to
-      input2 = reg_input1_first;
-      input3 = reg_input2_first;
-      input4 = reg_input3_first;
-      input5 = reg_input4_first;
+      input2 = reg_input2_first;
+      input3 = reg_input3_first;
+      input4 = reg_input4_first;
+      input5 = reg_input5_first;
       input6 = 8'bxxxxxxxx;//This is the reset value for mux should go to
 
           $display("=====================================");
