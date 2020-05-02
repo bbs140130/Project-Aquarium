@@ -69,6 +69,8 @@ always @(posedge CLK or posedge reset) begin
 end
 
 endmodule
+
+
 //--------------------------------------------------------------------------------
 module test_bench;
     reg reset;
@@ -121,10 +123,6 @@ module test_bench;
         D_tank_cleanliness = 8'b0;#50;
         $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_cleanliness, Q_tank_cleanliness);  
 
-
-
-
-
     $display("========================================");
   $display("Register 2: Tank Temperature");
 
@@ -150,8 +148,6 @@ module test_bench;
     reset = 1; 
     D_tank_temperature = 8'b0;#50;
         $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_temperature, Q_tank_temperature);
-
-
 
         $display("========================================");
   $display("Register 3: Food Shortage");
@@ -205,10 +201,6 @@ module test_bench;
     D_tank_saltiness = 8'b0;#50;
         $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_saltiness, Q_tank_saltiness); 
 
-
-
- end
-
-
+    end
 
 endmodule
