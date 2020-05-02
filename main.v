@@ -171,17 +171,13 @@ module test_bench;
      reg [7:0] input6;
 
 
-     reg [7:0] reg1_output_clock_0;
-     reg [7:0] reg1_output_clock_1;
+     reg [7:0] reg1_output;
 
-     reg [7:0] reg2_output_clock_0;
-     reg [7:0] reg2_output_clock_1;
+     reg [7:0] reg2_output;
 
-     reg [7:0] reg3_output_clock_0;
-     reg [7:0] reg3_output_clock_1;
+     reg [7:0] reg3_output;
 
-     reg [7:0] reg4_output_clock_0;
-     reg [7:0] reg4_output_clock_1;
+     reg [7:0] reg4_output;
 
 
      wire[7:0] out;
@@ -235,8 +231,8 @@ module test_bench;
       d_in = 4'b0100; #50;
           mux_input_5 = d_out;
 
-      $display("=====================================");
 
+$display("8 bit Register");
         $display("Register 1: Tank Cleanliness");
 
         $display("RST|CLK|    D     |     Q");
@@ -244,69 +240,51 @@ module test_bench;
         CLK = 1; 
         D_tank_cleanliness = 8'b00001110;#50;
         $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_cleanliness, Q_tank_cleanliness);  
-        reg1_output_clock_0 = Q_tank_cleanliness;
-        
-        reset = 0; 
-        CLK = 0; 
-        D_tank_cleanliness = 8'b00001110;#50;
-        $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_cleanliness, Q_tank_cleanliness);  
-        reg1_output_clock_1 = Q_tank_cleanliness;
+        reg1_output = Q_tank_cleanliness;
 
+ 
+    CLK = 0; 
+    D_tank_temperature = 8'b00011100;#50;
 
 
         $display("------------------------------------------------");
           $display("Register 2: Tank Temperature");
 
     $display("RST|CLK|    D     |     Q");
-    reset = 0; 
     CLK = 1; 
     D_tank_temperature = 8'b00011100;#50;
         $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_temperature, Q_tank_temperature);
-        reg2_output_clock_0 = Q_tank_temperature;
-    
-    reset = 0; 
+        reg2_output = Q_tank_temperature;
+ 
     CLK = 0; 
     D_tank_temperature = 8'b00011100;#50;
-        $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_temperature, Q_tank_temperature);  
-        reg2_output_clock_1 = Q_tank_temperature;
-
 
         $display("------------------------------------------------");
           $display("Register 3: Food Shortage");
 
     $display("RST|CLK|    D     |     Q");
-    reset = 0; 
     CLK = 1; 
     D_tank_food_storage = 8'b00111000;#50;
         $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_food_storage, Q_tank_food_storage);  
-        reg3_output_clock_0 = Q_tank_food_storage;
+        reg3_output = Q_tank_food_storage;
 
-
-    reset = 0; 
+ 
     CLK = 0; 
-    D_tank_food_storage = 8'b00111000;#50;
-        $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_food_storage, Q_tank_food_storage);  
-        reg3_output_clock_1 = Q_tank_food_storage;
+    D_tank_temperature = 8'b00011100;#50;
+
    
 
         $display("------------------------------------------------");
   $display("Register 4: Tank Saltiness");
 
     $display("RST|CLK|    D     |     Q");
-    reset = 0; 
     CLK = 1; 
     D_tank_saltiness = 8'b01110000;#50;
         $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_saltiness, Q_tank_saltiness); 
-        reg4_output_clock_0 = Q_tank_saltiness;
+        reg4_output = Q_tank_saltiness;
 
 
 
-    
-    reset = 0; 
-    CLK = 0; 
-    D_tank_saltiness = 8'b01110000;#50;
-        $display(" %0h | %0h | %8b | %8b",reset, CLK, D_tank_saltiness, Q_tank_saltiness);  
-        reg4_output_clock_1 = Q_tank_saltiness;
 
 
       $display("=====================================");
@@ -316,10 +294,10 @@ module test_bench;
          #100
       input0 = 8'b00000000; //No input
       input1 = 8'b00000010; //Here's where the Counter output should go to
-      input2 = reg1_output_clock_0;
-      input3 = reg2_output_clock_0;
-      input4 = reg3_output_clock_0;
-      input5 = reg4_output_clock_0;
+      input2 = reg1_output;
+      input3 = reg2_output;
+      input4 = reg3_output;
+      input5 = reg4_output;
       input6 = 8'b11111111;//This is the reset value for mux should go to
 
           $display("=====================================");
