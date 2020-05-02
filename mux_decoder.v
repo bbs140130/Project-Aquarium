@@ -73,7 +73,7 @@ module test_bench;
    dec_4x16 test1 (.d_out(d_out), .d_in(d_in)); 
 
 
-   // Mux vatiables and test function
+   // Mux variables and test function
      reg [4:0] select;
 
   reg [7:0] input0;
