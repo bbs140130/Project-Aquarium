@@ -57,6 +57,23 @@ assign d_out = (d_in == 4'b0000) ? tmp   :
 
 endmodule
 
+module fish_counter (reset, CLK, D_fish_in, Q_fish_out);
+  input reset;
+  input CLK;
+  input [7:0] D_fish_in;
+  output [7:0] Q_fish_out;
+  
+  reg [7:0] Q_fish_out;
+
+always @(posedge CLK or posedge reset) begin
+  if (reset) begin
+    Q_fish_out <= 8'b0;
+  end else begin
+    Q_fish_out <= D_fish_in;
+  end
+end
+
+endmodule
 
 module reg1 (reset, CLK, D_tank_cleanliness, Q_tank_cleanliness);
   input reset;
@@ -191,16 +208,19 @@ module test_bench;
     // Four Register variables and test functions-------------------
     reg reset;
     reg CLK;
+    reg [7:0] D_fish_in;
     reg [7:0] D_tank_cleanliness;
     reg [7:0] D_tank_temperature;
     reg [7:0] D_tank_food_storage;
     reg [7:0] D_tank_saltiness;
 
+    wire [7:0] Q_fish_out;
     wire [7:0] Q_tank_cleanliness;
     wire [7:0] Q_tank_temperature;
     wire [7:0] Q_tank_food_storage;
     wire [7:0] Q_tank_saltiness;
 
+    fish_counter fc(.reset(reset), .CLK(CLK), .D_fish_in(D_fish_in), .Q_fish_out(Q_fish_out));
 
     reg1 Reg_tank_cleanliness(.reset(reset), .CLK(CLK), .D_tank_cleanliness(D_tank_cleanliness), .Q_tank_cleanliness(Q_tank_cleanliness));
 
@@ -237,7 +257,7 @@ module test_bench;
         mux_input_6 = 5'b11111;
 
 $display("8 bit Register");
-    $display("Register 0: Fish Counter");
+    $display("Fish Counter");
 
         $display("RST|CLK|    D     |     Q");
         reset = 0; 
